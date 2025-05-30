@@ -1,9 +1,10 @@
 # Devenv
 .devenv*
 devenv.local.nix
-
+__debug*
 # direnv
 .direnv
 
 # pre-commit
 .pre-commit-config.yaml
+cmd/api/test.db
