@@ -48,3 +48,31 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 		},
 	})
 }
+
+func NotHandledParseError(w http.ResponseWriter, r *http.Request, err error) {
+	ReplyError(w, http.StatusBadRequest, FormattedResponse{
+		Message: "Invalid request format",
+		Code:    http.StatusBadRequest,
+		Details: []DetailsResponse{
+			{
+				Code:    http.StatusBadRequest,
+				Message: "Failed to parse request",
+				Stack:   err.Error(),
+			},
+		},
+	})
+}
+
+func UnauthorizedHandler(w http.ResponseWriter, r *http.Request) {
+	ReplyError(w, http.StatusUnauthorized, FormattedResponse{
+		Message: "Unauthorized access",
+		Code:    http.StatusUnauthorized,
+		Details: []DetailsResponse{
+			{
+				Code:    http.StatusUnauthorized,
+				Message: "You must be authenticated to access this resource",
+				Stack:   "Please provide valid credentials",
+			},
+		},
+	})
+}
